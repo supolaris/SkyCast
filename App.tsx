@@ -1,13 +1,9 @@
-import { Text, View } from "react-native";
+import MyNativeStack from "./src/components/navigations/nativeStack/nativeStack";
 
 
 function App(){
   return(
-    <View>
-      <Text>Sky Cast</Text>
-
-    </View>
-
+    <MyNativeStack />
   );
 };
 

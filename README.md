@@ -1,31 +1,49 @@
 Project Dependencies
 
-```bash
+# React Native Navigation
 
+```bash
+yarn add @react-navigation/native
 ```
 
 ```bash
-
+yarn add react-native-screens react-native-safe-area-context
 ```
 
-```bash
+### Native Stack
 
+```bash
+yarn add @react-navigation/native-stack
 ```
 
-```bash
+### Bottom Tabs
 
+```bash
+yarn add @react-navigation/bottom-tabs
 ```
 
-```bash
+# Lottiefiles
 
+```bash
+yarn add lottie-react-native
 ```
 
-```bash
+for TypeScript
 
+```bash
+npm i --save-dev @types/react-native-vector-icons
 ```
 
-```bash
+Edit android/app/build.gradle (NOT android/build.gradle) and add:
 
+```bash
+apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
+```
+
+# Linear Gradient
+
+```bash
+yarn add react-native-linear-gradient
 ```
 
 ```bash
