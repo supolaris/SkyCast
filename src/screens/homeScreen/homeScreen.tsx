@@ -41,7 +41,7 @@ const HomeScreen = () => {
                 </View>
 
                 <TenDaysWeatherForecast />
-
+                
             </View>
 
         </ScrollView>

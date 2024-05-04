@@ -3,12 +3,8 @@ import { View, Text, FlatList } from 'react-native';
 
 import { SkyCastColors } from '../../skyCastColors/skyCastColors';
 
-
-import Icon from 'react-native-vector-icons/FontAwesome';
-
 import CloudIcon from 'react-native-vector-icons/Feather';
 import { TodayWeatherForcastStyles } from './todayWeatherForcastStyles';
-
 
 const perHourData = [
     {
@@ -53,9 +49,7 @@ const perHourData = [
     },
 ]
 
-
 const TodayWeatherForcast = () => {
-
 
     const renderPerhourData = ({ item }: { item: any }) => {
         return (
@@ -79,6 +73,7 @@ const TodayWeatherForcast = () => {
                 data={perHourData}
                 renderItem={renderPerhourData}
                 keyExtractor={(item, index) => index.toString()}
+                showsHorizontalScrollIndicator= {false}
             />
         </>
     )

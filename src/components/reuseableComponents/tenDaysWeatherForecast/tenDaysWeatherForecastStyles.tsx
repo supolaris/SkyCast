@@ -6,7 +6,6 @@ export const TenDaysWeatherForecastStyles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: 5,
-        justifyContent: 'center',
 
     },
     dayTextView: {

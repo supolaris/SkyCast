@@ -12,7 +12,9 @@ export const HomeScreenStyles = StyleSheet.create({
     cityTemperatureDescriptionAltLatView: {
         flex: 2,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingTop: 40,
+        paddingBottom: 20
 
     },
     cityText: {
@@ -75,7 +77,9 @@ export const HomeScreenStyles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.1)',
         borderRadius: 10,
         marginHorizontal: 15,
-        marginVertical: 10
+        marginTop: 10,
+        marginBottom: 15,
+        paddingBottom: 5
     },
     tenDaysTitleTextView: {
         borderBottomWidth: 0.5,

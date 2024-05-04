@@ -98,17 +98,14 @@ const TenDaysWeatherForecast = () => {
         )
     }
 
-
-
-
     return (
-        <>
+        <View style={{alignContent: 'center', paddingLeft: 25,}}>
             <FlatList
                 data={tenDaysData}
                 renderItem={renderTenDaysData}
                 keyExtractor={(item, index) => index.toString()}
             />
-        </>
+        </View>
     )
 }
 

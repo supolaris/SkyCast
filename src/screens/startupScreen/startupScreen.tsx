@@ -17,7 +17,7 @@ const StartupScreen = () => {
     const navigation = useNavigation();
 
     const onGetStartedPressed = () => {
-        navigation.navigate('Home_Screen');
+        navigation.navigate('MyBottomTabs');
     }
 
     return (
