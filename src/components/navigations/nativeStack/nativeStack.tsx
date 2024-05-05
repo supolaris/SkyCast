@@ -17,6 +17,11 @@ function MyNativeStack() {
                     headerShown: false
                 }}>
 
+
+<Stack.Screen
+                    name="Search_Screen"
+                    component={SearchScreen} />
+
                     
                 <Stack.Screen
                     name="WeatherDetail_Screen"
@@ -30,9 +35,7 @@ function MyNativeStack() {
                     name="MyBottomTabs"
                     component={MyBottomTabs} />
 
-                <Stack.Screen
-                    name="Search_Screen"
-                    component={SearchScreen} />
+
 
                 <Stack.Screen
                     name="Home_Screen"

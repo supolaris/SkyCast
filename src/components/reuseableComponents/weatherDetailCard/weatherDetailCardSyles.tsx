@@ -3,24 +3,51 @@ import { SkyCastColors } from "../../skyCastColors/skyCastColors";
 
 export const WeatherDetailCardSyles = StyleSheet.create({
     container: {
+        backgroundColor: SkyCastColors.transparentWhite,
+        marginVertical: 5,
+        padding: 10,
+        borderRadius: 10
+        //flexDirection: 'row'
 
     },
-    temperatureDetailView: {
+    view1: {
+        marginHorizontal: 50
 
     },
-    temperatureDetailText: {
+    titleView: {
+        flexDirection: 'row',
+        alignItems: 'center'
 
     },
-    temperatureValueView: {
+    iconView: {
+        marginRight: 10
 
     },
-    temperatureValueText: {
+    titleText: {
+        fontSize: 20,
+        color: SkyCastColors.white
 
     },
-    temperatureDescriptionView: {
+    valueView: {
+        marginTop: 10
 
     },
-    temperatureDescriptionText: {
+    valueText: {
+        fontSize: 18,
+        color: SkyCastColors.white
+
+    },
+    descriptionView: {
+        marginTop: 20
+
+    },
+    descriptionText: {
+        fontSize: 18,
+        color: SkyCastColors.white
+
+    },
+    view2: {
+        marginHorizontal: 50
 
     },
 })

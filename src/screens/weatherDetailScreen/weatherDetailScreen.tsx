@@ -6,6 +6,7 @@ import { WeatherDetailScreenStyles } from './weatherDetailScreenStyles';
 import WeatherDetailCard from '../../components/reuseableComponents/weatherDetailCard/weatherDetailCard';
 
 import TemperatureIcon from 'react-native-vector-icons/FontAwesome6';
+
 import { SkyCastColors } from '../../components/skyCastColors/skyCastColors';
 
 const WeatherDetailScreen = () => {
@@ -33,6 +34,11 @@ const WeatherDetailScreen = () => {
                     <Text style={WeatherDetailScreenStyles.temperatureIconText}>TEMPERATURE</Text>
                 </View>
 
+            </View>
+
+            <View style={WeatherDetailScreenStyles.weatherDetailCardView}>
+                <WeatherDetailCard
+                />
             </View>
 
         </View>

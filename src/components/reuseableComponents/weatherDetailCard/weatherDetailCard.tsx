@@ -3,34 +3,54 @@ import { View, Text, FlatList } from 'react-native';
 
 import { WeatherDetailCardSyles } from './weatherDetailCardSyles';
 
+import SunIcon from 'react-native-vector-icons/Feather';
+import { SkyCastColors } from '../../skyCastColors/skyCastColors';
+
 const weatherDetailData = [
     {
-        temperatureDetail: '',
-        temperatureValue: '',
-        temperatureDescription: ''
-    }
+        title: 'UV INDEX',
+        value: '0',
+        temperatureDescription: 'Low for rest of the day'
+    },
+    {
+        title: 'SUNRISE',
+        value: '6:28 AM',
+        temperatureDescription: 'Sunset 6:10 PM'
+    },
 ]
 
 const WeatherDetailCard = () => {
 
-
-    const renderWeatherDetail = ({item}:{item:any}) => {
+    const renderWeatherDetail = ({ item }: { item: any }) => {
         return (
             <View style={WeatherDetailCardSyles.container}>
-                <View style={WeatherDetailCardSyles.temperatureDetailView}>
-                    <Text style={WeatherDetailCardSyles.temperatureDetailText}></Text>
 
-                </View>
+                    <View style={WeatherDetailCardSyles.titleView}>
+                        <View style={WeatherDetailCardSyles.iconView}>
+                            <SunIcon 
+                            name='sun'
+                            color={SkyCastColors.white}
+                            size={25}
+                            />
+                        </View>
+                        <View>
+                        <Text style={WeatherDetailCardSyles.titleText}>{item.title}</Text>
 
-                <View style={WeatherDetailCardSyles.temperatureValueView}>
-                    <Text style={WeatherDetailCardSyles.temperatureValueText}>{item.temperatureValue}</Text>
+                        </View>
 
-                </View>
 
-                <View style={WeatherDetailCardSyles.temperatureDescriptionView}>
-                    <Text style={WeatherDetailCardSyles.temperatureDescriptionText}></Text>
+                    </View>
 
-                </View>
+                    <View style={WeatherDetailCardSyles.valueView}>
+                        <Text style={WeatherDetailCardSyles.valueText}>{item.value}</Text>
+
+                    </View>
+
+                    <View style={WeatherDetailCardSyles.descriptionView}>
+                        <Text style={WeatherDetailCardSyles.descriptionText}>{item.temperatureDescription}</Text>
+
+                    </View>
+
             </View>
         )
     }

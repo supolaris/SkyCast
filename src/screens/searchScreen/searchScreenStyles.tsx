@@ -22,6 +22,29 @@ export const SearchScreenStyles = StyleSheet.create({
     textInputView: {
         alignItems: 'center'
     },
+    flatListView: {
+        width: '90%',
+        marginTop: 5,
+        marginBottom: 10,
+
+    },
+    touchable:{
+        flex: 1,
+        width: '100%',
+
+    },
+    suggestionText: {
+        width: '100%',
+        flex: 1, 
+        fontSize: 18,
+        color: 'white',
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+        borderWidth: 0.3,
+        borderColor: '#ccc',
+        marginTop: 5,
+        borderRadius: 10
+    },
     cityWeatherCardView: {
         marginVertical: 10
     }

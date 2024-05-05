@@ -65,5 +65,8 @@ export const WeatherDetailScreenStyles = StyleSheet.create({
         color: SkyCastColors.white
     
 
+    },
+    weatherDetailCardView: {
+        marginVertical: 10
     }
 })
