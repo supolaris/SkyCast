@@ -46,6 +46,8 @@ apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
 yarn add react-native-linear-gradient
 ```
 
-```bash
+# Async Storage
 
+```bash
+yarn add @react-native-async-storage/async-storage
 ```

@@ -11,12 +11,14 @@ import { useNavigation } from '@react-navigation/native';
 import citiesData from '../../components/utilities/citiesJson/cities.json';
 import { myWeatherAPI } from '../../components/utilities/weatherAPI/weatherAPI';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const SearchScreen = () => {
 
     const navigation = useNavigation();
 
     const [searchCity, setSearchCity] = useState('');
-    const [inputText, setInputText] = useState('Islamabad');
+    const [inputText, setInputText] = useState('Lahore');
     const [selectedCity, setSelectedCity] = useState(null);
     const [suggestions, setSuggestions] = useState([]);
 
@@ -40,7 +42,9 @@ const SearchScreen = () => {
             })
         }
 
-        const searchCity = () => {
+        const searchCity = async () => {
+
+            await AsyncStorage.setItem('searchedCity', inputText);
             
             fetch(`http://api.weatherapi.com/v1/current.json?key=${myWeatherAPI}&q=${inputText}`)
             .then((response) => response.json())
@@ -54,25 +58,25 @@ const SearchScreen = () => {
             })
         }
 
-        const sevenDaysData = () => {
+        // const sevenDaysData = () => {
 
-            fetch(`http://api.weatherapi.com/v1/current.json?key=${myWeatherAPI}&q=07112&days=7`)
+        //     fetch(`http://api.weatherapi.com/v1/current.json?key=${myWeatherAPI}&q=07112&days=7`)
             
-            .then((response) => response.json())
+        //     .then((response) => response.json())
             
-            .then((data) => {
-                console.log("7 Data Weather Details: " + JSON.stringify(data));
-                setSearchCityDetail(data);
-            })
-            .then((error) => {
-                console.log("Error " + error);
-            })
+        //     .then((data) => {
+        //         console.log("7 Data Weather Details: " + JSON.stringify(data));
+        //         setSearchCityDetail(data);
+        //     })
+        //     .then((error) => {
+        //         console.log("Error " + error);
+        //     })
 
-        }
+        // }
 
         myCity();
         searchCity();
-        sevenDaysData();
+        //sevenDaysData();
 
     }, [])
 
@@ -91,7 +95,8 @@ const SearchScreen = () => {
     };
 
     // Function to handle city selection
-    const handleCitySelection = (city: any) => {
+    const handleCitySelection = async (city: any) => {
+        await AsyncStorage.setItem('searchedCity', city.name);
         setSelectedCity(city);
         setInputText(city.name); // Set the input text to the selected city name
         setSuggestions([]); // Clear suggestions
@@ -120,9 +125,9 @@ const SearchScreen = () => {
                         renderItem={({ item }: { item: any }) => (
                             <TouchableOpacity
                                 style={SearchScreenStyles.touchable}
-                                onPress={() => {
+                                onPress={ () => {
                                     handleCitySelection(item)
-                                    navigation.navigate('WeatherDetail_Screen');
+                                    navigation.navigate('HomeScreen');
                                     
                                 }}>
                                 <Text style={SearchScreenStyles.suggestionText}>{item.name}</Text>

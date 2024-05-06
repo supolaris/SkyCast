@@ -22,6 +22,11 @@ export const HomeScreenStyles = StyleSheet.create({
         color: SkyCastColors.white,
 
     },
+    countryText: {
+        fontSize: 16,
+        color: SkyCastColors.white,
+
+    },
     temperatureText: {
         fontSize: 60,
         color: SkyCastColors.white,
@@ -34,7 +39,8 @@ export const HomeScreenStyles = StyleSheet.create({
 
     },
     altLatView: {
-        flexDirection: 'row'
+        marginTop: 5,
+        flexDirection: 'row',
 
     },
     altitudeText: {
