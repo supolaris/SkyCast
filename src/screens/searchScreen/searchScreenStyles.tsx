@@ -46,6 +46,6 @@ export const SearchScreenStyles = StyleSheet.create({
         borderRadius: 10
     },
     cityWeatherCardView: {
-        marginVertical: 10
+        marginVertical: 3
     }
 })

@@ -13,13 +13,10 @@ import { myWeatherAPI } from '../../components/utilities/weatherAPI/weatherAPI';
 
 import StartUpLottie from '../../components/lottie/startUpLottie';
 
-
 const HomeScreen = () => {
-
 
     const [cityWeatherDetail, setCityWeatherDetail] = useState('');
     const [storedCityIcon , setStoredCityIcon] = useState('');
-
 
     useEffect(() => {
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StatusBar, TextInput, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StatusBar, TextInput, FlatList, TouchableOpacity, StyleSheet, Pressable } from 'react-native';
 
 import { SearchScreenStyles } from './searchScreenStyles';
 
@@ -13,6 +13,9 @@ import { myWeatherAPI } from '../../components/utilities/weatherAPI/weatherAPI';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import GetLocation from 'react-native-get-location';
+import { PermissionsAndroid } from 'react-native';
+
 const SearchScreen = () => {
 
     const navigation = useNavigation();
@@ -23,47 +26,62 @@ const SearchScreen = () => {
     const [suggestions, setSuggestions] = useState([]);
 
     const [cityWeatherDetail, setCityWeatherDetail] = useState('');
+    const [newYorkCityWeatherDetail, setNewYorkCityWeatherDetail] = useState('');
 
     const [searchCityDetail, setSearchCityDetail] = useState('');
 
     const [savedCityData, setSavedCityData] = useState('');
 
+    const [myLocation, setMyLocation] = useState('');
+
     useEffect(() => {
 
         const myCity = () => {
             fetch(`http://api.weatherapi.com/v1/current.json?key=${myWeatherAPI}&q=Islamabad`)
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("Weather Details: " + JSON.stringify(data));
-                setCityWeatherDetail(data);
-            })
-            .then((error) => {
-                console.log("Error " + error);
-            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("Weather Details: " + JSON.stringify(data));
+                    setCityWeatherDetail(data);
+                })
+                .then((error) => {
+                    console.log("Error " + error);
+                })
+        }
+
+        const newYorkCity = () => {
+            fetch(`http://api.weatherapi.com/v1/current.json?key=${myWeatherAPI}&q=New York City`)
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("Weather Details: " + JSON.stringify(data));
+                    setNewYorkCityWeatherDetail(data);
+                })
+                .then((error) => {
+                    console.log("Error " + error);
+                })
         }
 
         const searchCity = async () => {
 
             await AsyncStorage.setItem('searchedCity', inputText);
-            
+
             fetch(`http://api.weatherapi.com/v1/current.json?key=${myWeatherAPI}&q=${inputText}`)
-            .then((response) => response.json())
-            
-            .then((data) => {
-                console.log("Weather Details: " + JSON.stringify(data));
-                setSearchCityDetail(data);
-            })
-            .then((error) => {
-                console.log("Error " + error);
-            })
+                .then((response) => response.json())
+
+                .then((data) => {
+                    console.log("Weather Details: " + JSON.stringify(data));
+                    setSearchCityDetail(data);
+                })
+                .then((error) => {
+                    console.log("Error " + error);
+                })
         }
 
         // const sevenDaysData = () => {
 
         //     fetch(`http://api.weatherapi.com/v1/current.json?key=${myWeatherAPI}&q=07112&days=7`)
-            
+
         //     .then((response) => response.json())
-            
+
         //     .then((data) => {
         //         console.log("7 Data Weather Details: " + JSON.stringify(data));
         //         setSearchCityDetail(data);
@@ -75,6 +93,7 @@ const SearchScreen = () => {
         // }
 
         myCity();
+        newYorkCity();
         searchCity();
         //sevenDaysData();
 
@@ -89,7 +108,7 @@ const SearchScreen = () => {
         const filteredCities = citiesData.filter((city: any) =>
             city.name.toLowerCase().includes(text.toLowerCase())
         );
-        
+
         setSuggestions(filteredCities);
         setInputText(text);
     };
@@ -102,12 +121,47 @@ const SearchScreen = () => {
         setSuggestions([]); // Clear suggestions
     };
 
+    // const getLocation = async () => {
+    //     try {
+    //         const granted = await PermissionsAndroid.request(
+    //             PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+    //             {
+    //                 title: "Location Permission",
+    //                 message:
+    //                     "App needs access to your location.",
+    //                 buttonNeutral: "Ask Me Later",
+    //                 buttonNegative: "Cancel",
+    //                 buttonPositive: "OK"
+    //             }
+    //         );
+
+    //         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+    //             console.log("Location permission granted");
+
+    //             // Get location here
+    //         } else {
+    //             console.log("Location permission denied");
+    //         }
+    //     } catch (err) {
+    //         console.warn(err);
+    //     }
+    // };
+
     return (
         <View style={SearchScreenStyles.container}>
             <StatusBar translucent backgroundColor="transparent" />
 
             <View style={SearchScreenStyles.titleTextView}>
                 <Text style={SearchScreenStyles.titleText}>Weather</Text>
+
+
+                {/* <View>
+                    <Pressable 
+                    onPress={getLocation}
+                    >
+                        <Text>Get Location</Text>
+                    </Pressable>
+                </View> */}
                 {/* <Text>{cityWeatherDetail.location.name}</Text> */}
 
             </View>
@@ -125,10 +179,10 @@ const SearchScreen = () => {
                         renderItem={({ item }: { item: any }) => (
                             <TouchableOpacity
                                 style={SearchScreenStyles.touchable}
-                                onPress={ () => {
+                                onPress={() => {
                                     handleCitySelection(item)
                                     navigation.navigate('HomeScreen');
-                                    
+
                                 }}>
                                 <Text style={SearchScreenStyles.suggestionText}>{item.name}</Text>
                             </TouchableOpacity>
@@ -142,13 +196,24 @@ const SearchScreen = () => {
             {cityWeatherDetail &&
                 (
                     <View style={SearchScreenStyles.cityWeatherCardView}>
-                        <CityWeatherCard 
-                        cityWeatherDetail={cityWeatherDetail}
+                        <CityWeatherCard
+                            cityWeatherDetail={cityWeatherDetail}
                         // cityName={cityWeatherDetail.location.name}
                         // region={cityWeatherDetail.location.region}
-                    />
+                        />
                     </View>
+                )
+            }
 
+            {newYorkCityWeatherDetail &&
+                (
+                    <View style={SearchScreenStyles.cityWeatherCardView}>
+                        <CityWeatherCard
+                            cityWeatherDetail={newYorkCityWeatherDetail}
+                        // cityName={cityWeatherDetail.location.name}
+                        // region={cityWeatherDetail.location.region}
+                        />
+                    </View>
                 )
             }
 

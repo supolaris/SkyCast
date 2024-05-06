@@ -51,3 +51,26 @@ yarn add react-native-linear-gradient
 ```bash
 yarn add @react-native-async-storage/async-storage
 ```
+
+# Geo locaiton
+
+#
+
+```bash
+yarn add react-native-get-location
+```
+
+Android post install
+For Android you need to define the location permissions on AndroidManifest.xml.
+
+<!-- Define ACCESS_FINE_LOCATION if you will use enableHighAccuracy=true  -->
+
+```bash
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+```
+
+<!-- Define ACCESS_COARSE_LOCATION if you will use enableHighAccuracy=false  -->
+
+```bash
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+```
