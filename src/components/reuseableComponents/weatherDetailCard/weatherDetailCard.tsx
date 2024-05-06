@@ -21,35 +21,39 @@ const weatherDetailData = [
 
 const WeatherDetailCard = () => {
 
+    // const { location } = props.searchCityDetail;
+    // const { current } = props.searchCityDetail;
+    // const { condition } = props.searchCityDetail;
+
     const renderWeatherDetail = ({ item }: { item: any }) => {
         return (
             <View style={WeatherDetailCardSyles.container}>
 
-                    <View style={WeatherDetailCardSyles.titleView}>
-                        <View style={WeatherDetailCardSyles.iconView}>
-                            <SunIcon 
+                <View style={WeatherDetailCardSyles.titleView}>
+                    <View style={WeatherDetailCardSyles.iconView}>
+                        <SunIcon
                             name='sun'
                             color={SkyCastColors.white}
                             size={25}
-                            />
-                        </View>
-                        <View>
+                        />
+                    </View>
+                    <View>
                         <Text style={WeatherDetailCardSyles.titleText}>{item.title}</Text>
 
-                        </View>
-
-
                     </View>
 
-                    <View style={WeatherDetailCardSyles.valueView}>
-                        <Text style={WeatherDetailCardSyles.valueText}>{item.value}</Text>
 
-                    </View>
+                </View>
 
-                    <View style={WeatherDetailCardSyles.descriptionView}>
-                        <Text style={WeatherDetailCardSyles.descriptionText}>{item.temperatureDescription}</Text>
+                <View style={WeatherDetailCardSyles.valueView}>
+                    <Text style={WeatherDetailCardSyles.valueText}>{item.value}</Text>
 
-                    </View>
+                </View>
+
+                <View style={WeatherDetailCardSyles.descriptionView}>
+                    <Text style={WeatherDetailCardSyles.descriptionText}>{item.temperatureDescription}</Text>
+
+                </View>
 
             </View>
         )

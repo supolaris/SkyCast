@@ -14,6 +14,7 @@ const Tab = createBottomTabNavigator();
 function MyBottomTabs() {
   return (
     <Tab.Navigator
+    initialRouteName='Search_Screen'
     screenOptions={{
       headerShown: false,
       tabBarStyle: {

@@ -55,7 +55,11 @@ export const CityWeatherCardStyles = StyleSheet.create({
 
     },
     temperatureHighLowView: {
-        flexDirection: 'row'
+        flex: 1,
+        flexDirection: 'row',
+       // paddingLeft: 50,
+       paddingHorizontal: 10,
+        justifyContent: 'space-between'
 
     },
     temperatureHighText: {

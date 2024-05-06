@@ -78,7 +78,7 @@ export const HomeScreenStyles = StyleSheet.create({
         borderRadius: 10,
         marginHorizontal: 15,
         marginTop: 10,
-        marginBottom: 15,
+        marginBottom: 5,
         paddingBottom: 5
     },
     tenDaysTitleTextView: {
@@ -93,9 +93,10 @@ export const HomeScreenStyles = StyleSheet.create({
     },
     tenDaysScheduleView: {
         
+    },
+    weatherDetailCardView: {
+        paddingHorizontal: 15,
+        paddingBottom: 10
     }
-
-
-
 
 })

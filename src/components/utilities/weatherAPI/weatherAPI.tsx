@@ -1,0 +1,1 @@
+export const myWeatherAPI = "609022eb819f49ad9a3223925240505";

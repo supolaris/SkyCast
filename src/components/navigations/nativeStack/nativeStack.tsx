@@ -17,29 +17,26 @@ function MyNativeStack() {
                     headerShown: false
                 }}>
 
-
-<Stack.Screen
-                    name="Search_Screen"
-                    component={SearchScreen} />
-
-                    
-                <Stack.Screen
-                    name="WeatherDetail_Screen"
-                    component={WeatherDetailScreen} />
-
                 <Stack.Screen
                     name="Startup_Screen"
                     component={StartupScreen} />
 
                 <Stack.Screen
-                    name="MyBottomTabs"
-                    component={MyBottomTabs} />
+                    name="Home_Screen"
+                    component={HomeScreen} />
 
+                <Stack.Screen
+                    name="WeatherDetail_Screen"
+                    component={WeatherDetailScreen} />
 
 
                 <Stack.Screen
-                    name="Home_Screen"
-                    component={HomeScreen} />
+                    name="Search_Screen"
+                    component={SearchScreen} />
+
+                <Stack.Screen
+                    name="MyBottomTabs"
+                    component={MyBottomTabs} />
 
             </Stack.Navigator>
         </NavigationContainer>

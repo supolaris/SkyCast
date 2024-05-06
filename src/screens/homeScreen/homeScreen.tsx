@@ -5,6 +5,8 @@ import { HomeScreenStyles } from './homeScreenStyles';
 
 import TodayWeatherForcast from '../../components/reuseableComponents/todayWeatherForcast/todayWeatherForcast';
 import TenDaysWeatherForecast from '../../components/reuseableComponents/tenDaysWeatherForecast/tenDaysWeatherForecast';
+import WeatherDetailCard from '../../components/reuseableComponents/weatherDetailCard/weatherDetailCard';
+
 
 import StartUpLottie from '../../components/lottie/startUpLottie';
 
@@ -42,6 +44,12 @@ const HomeScreen = () => {
 
                 <TenDaysWeatherForecast />
                 
+            </View>
+
+            <View style={HomeScreenStyles.weatherDetailCardView}>
+                <WeatherDetailCard 
+                // cityWeatherDetail={cityWeatherDetail}
+                />
             </View>
 
         </ScrollView>

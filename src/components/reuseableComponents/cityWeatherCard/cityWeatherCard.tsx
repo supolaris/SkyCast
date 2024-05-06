@@ -3,47 +3,34 @@ import { View, Text, FlatList } from 'react-native';
 
 import { CityWeatherCardStyles } from './cityWeatherCardStyles';
 
-const CityWeatherData = [
-    {
-        cityName: 'Islamabad',
-        time: '10PM',
-        temperature: '22',
-        description: 'Partly Cloudy',
-        temperatureHigh: '25',
-        temperatureLow: '15'
-    },
-    {
-        cityName: 'San Francisco',
-        time: '7AM',
-        temperature: '12',
-        description: 'Hail Strom',
-        temperatureHigh: '15',
-        temperatureLow: '10'
-    },
-]
+const CityWeatherCard = (props: { cityWeatherDetail: any }) => {
 
-const CityWeatherCard = () => {
-
-    const renderCityWeatherData = ({item}: {item:any}) => {
+    const renderCityWeatherData = () => {
+        const { location } = props.cityWeatherDetail;
+        const { current } = props.cityWeatherDetail;
+        const { condition } = props.cityWeatherDetail;
         return (
             <View style={CityWeatherCardStyles.container}>
                 <View style={CityWeatherCardStyles.locationTimeTemperatureView}>
                     <View style={CityWeatherCardStyles.locationTimeView}>
-                        <Text style={CityWeatherCardStyles.locationText}>{item.cityName}</Text>
-                        <Text style={CityWeatherCardStyles.timeText}>{item.time}</Text>
+                        <Text style={CityWeatherCardStyles.locationText}>{location.name}</Text>
+                        <Text style={CityWeatherCardStyles.timeText}>{location.country}</Text>
                     </View>
                     <View style={CityWeatherCardStyles.temperatureView}>
-                        <Text style={CityWeatherCardStyles.temperatureText}>{item.temperature}<Text>&#176;</Text></Text>
+                        <Text style={CityWeatherCardStyles.temperatureText}>{current.temp_c}<Text>&#176;</Text></Text>
                     </View>
                 </View>
 
                 <View style={CityWeatherCardStyles.descriptionTemperatureHighLowView}>
-                    <View style={CityWeatherCardStyles.descriptionView}>
-                        <Text style={CityWeatherCardStyles.descriptionText}>{item.description}</Text>
-                    </View>
+
                     <View style={CityWeatherCardStyles.temperatureHighLowView}>
-                        <Text style={CityWeatherCardStyles.temperatureHighText}>H:{item.temperatureHigh}<Text>&#176;</Text></Text>
-                        <Text style={CityWeatherCardStyles.temperatureLowText}>L:{item.temperatureLow}<Text>&#176;</Text></Text>
+                        <View>
+                            <Text style={CityWeatherCardStyles.temperatureHighText}>Humidity:  {current.humidity}<Text>%</Text></Text>
+                        </View>
+                        <View>
+                            <Text style={CityWeatherCardStyles.temperatureLowText}>Feels like:  {current.feelslike_c}<Text>&#176;</Text></Text>
+                        </View>
+
                     </View>
                 </View>
 
@@ -51,15 +38,15 @@ const CityWeatherCard = () => {
         )
     }
 
-  return (
-    <>
-      <FlatList
-      data={CityWeatherData}
-      renderItem={renderCityWeatherData}
-      keyExtractor={(item, index) => index.toString()}
-      />
-    </>
-  )
+    return (
+        <>
+            <FlatList
+                data={[props.cityWeatherDetail]}
+                renderItem={renderCityWeatherData}
+                keyExtractor={(item, index) => index.toString()}
+            />
+        </>
+    )
 }
 
 export default CityWeatherCard;
