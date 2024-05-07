@@ -54,8 +54,6 @@ yarn add @react-native-async-storage/async-storage
 
 # Geo locaiton
 
-#
-
 ```bash
 yarn add react-native-get-location
 ```
@@ -73,4 +71,10 @@ For Android you need to define the location permissions on AndroidManifest.xml.
 
 ```bash
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+```
+
+# Axios
+
+```bash
+$ npm install axios
 ```

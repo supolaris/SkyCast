@@ -9,6 +9,10 @@ export const HomeScreenStyles = StyleSheet.create({
         
 
     },
+    linearGradient: {
+        flex: 1,
+
+    },
     cityTemperatureDescriptionAltLatView: {
         flex: 2,
         alignItems: 'center',

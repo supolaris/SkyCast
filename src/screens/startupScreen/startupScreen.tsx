@@ -30,6 +30,10 @@ const StartupScreen = () => {
                     <Text style={StartupScreenSyles.descriptionText}>Your Window to the Skies.</Text>
                 </View>
 
+                <View style={StartupScreenSyles.lottieView}>
+                    <StartUpLottie />
+                </View>
+
                 <PrimaryButton
                 onPress={onGetStartedPressed}
                     buttonText="Get Started"

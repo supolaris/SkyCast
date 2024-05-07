@@ -1,9 +1,12 @@
 import MyNativeStack from "./src/components/navigations/nativeStack/nativeStack";
+import AuthContextProvider from "./src/components/utilities/useContext/useContext";
 
 
-function App(){
-  return(
-    <MyNativeStack />
+function App() {
+  return (
+    <AuthContextProvider>
+      <MyNativeStack />
+    </AuthContextProvider>
   );
 };
 

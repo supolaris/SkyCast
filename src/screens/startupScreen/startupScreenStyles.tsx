@@ -15,7 +15,7 @@ export const StartupScreenSyles = StyleSheet.create({
 
     },
     titleView: {
-        flex: 4,
+        flex: 2,
         justifyContent: 'center'
         
     },
@@ -32,6 +32,11 @@ export const StartupScreenSyles = StyleSheet.create({
         textAlign: 'center'
         
     },
+    lottieView: {
+        flex: 2,
+        alignItems: 'center',
+        width: '100%'
+    }
 
 
 

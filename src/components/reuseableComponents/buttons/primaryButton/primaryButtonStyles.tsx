@@ -8,18 +8,16 @@ export const PrimaryButtonStyles = StyleSheet.create({
 
     },
     pressable: {
-        backgroundColor: SkyCastColors.lightPink,
-       // width: '90%',
+        backgroundColor: SkyCastColors.primaryColor,
         borderRadius: 10,
         padding: 10
 
-
     },
     pressableText: {
-        color: SkyCastColors.black,
-        fontSize: 25,
+        color: SkyCastColors.white,
+        fontSize: 22,
         textAlign: 'center',
-        fontWeight: 'bold'
+        //fontWeight: 'bold'
 
     }
 })

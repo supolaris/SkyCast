@@ -8,6 +8,10 @@ export const SearchScreenStyles = StyleSheet.create({
         paddingTop: 40
 
     },
+    linearGradient: {
+        flex: 1,
+
+    },
     titleTextView: {
         paddingLeft: 20,
         paddingVertical: 20

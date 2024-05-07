@@ -4,6 +4,8 @@ import { SkyCastColors } from "../../skyCastColors/skyCastColors";
 export const TodayWeatherForcastStyles = StyleSheet.create({
     container: {
         paddingHorizontal: 15,
+        paddingRight: 7,
+        marginRight: 20,
         alignItems: 'center',
         paddingVertical: 20
 

@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, ScrollView, Image } from 'react-native';
+
+import { SkyCastColors } from '../../components/skyCastColors/skyCastColors';
+
+import LinearGradient from 'react-native-linear-gradient';
 
 import { HomeScreenStyles } from './homeScreenStyles';
 
@@ -13,78 +17,94 @@ import { myWeatherAPI } from '../../components/utilities/weatherAPI/weatherAPI';
 
 import StartUpLottie from '../../components/lottie/startUpLottie';
 
+import { AuthContext } from '../../components/utilities/useContext/useContext';
+
 const HomeScreen = () => {
 
-    const [cityWeatherDetail, setCityWeatherDetail] = useState('');
-    const [storedCityIcon , setStoredCityIcon] = useState('');
+    const authCtx = useContext(AuthContext);
+
+    const [searchedCityWeatherDetail, setSearchedCityWeatherDetail] = useState({
+        location: "",
+        current: "",
+        condition: ""
+
+    });
+    const [searchedCity, setSearchedCity] = useState('');
+    const [storedCityIcon, setStoredCityIcon] = useState('');
 
     useEffect(() => {
-
         const weatherDetail = async () => {
-
             const searchCity = await AsyncStorage.getItem('searchedCity');
+            setSearchedCity(searchCity as string);
+            console.log("Searched City " + searchCity);
 
+
+
+            //const storedUserId = authCtx.cityName();
+
+
+            
             fetch(`http://api.weatherapi.com/v1/current.json?key=${myWeatherAPI}&q=${searchCity}`)
                 .then((response) => response.json())
                 .then((data) => {
                     console.log("Searched City Details: " + JSON.stringify(data));
-                    setCityWeatherDetail(data);
+                    setSearchedCityWeatherDetail(data);
                 })
                 .then((error) => {
                     console.log("Error " + error);
                 })
-
-                //const weatherIcon = 'http://' + cityWeatherDetail.current.condition.icon;
         }
-
         weatherDetail();
-
-    }, [])
+    }, [searchedCity])
 
     return (
         <ScrollView style={HomeScreenStyles.container}>
-            <View style={HomeScreenStyles.cityTemperatureDescriptionAltLatView}>
-                <Text style={HomeScreenStyles.cityText}>{cityWeatherDetail.location && cityWeatherDetail.location.name}</Text>
-                <Text style={HomeScreenStyles.countryText}>{cityWeatherDetail.location && cityWeatherDetail.location.country}</Text>
-                <Text style={HomeScreenStyles.temperatureText}>20<Text>&#176;</Text></Text>
-                <View style={{alignItems: 'center'}}>
-                <Text style={HomeScreenStyles.descriptionText}>{cityWeatherDetail.current && cityWeatherDetail.current.condition && cityWeatherDetail.current.condition.text}</Text>
-                {/* <Image 
+            <LinearGradient colors={[SkyCastColors.primaryColor, SkyCastColors.navyBlue]}
+                style={HomeScreenStyles.linearGradient}
+            >
+                <View style={HomeScreenStyles.cityTemperatureDescriptionAltLatView}>
+                    <Text style={HomeScreenStyles.cityText}>{searchedCityWeatherDetail.location && searchedCityWeatherDetail.location.name}</Text>
+                    <Text style={HomeScreenStyles.countryText}>{searchedCityWeatherDetail.location && searchedCityWeatherDetail.location.country}</Text>
+                    <Text style={HomeScreenStyles.temperatureText}>20<Text>&#176;</Text></Text>
+                    <View style={{ alignItems: 'center' }}>
+                        <Text style={HomeScreenStyles.descriptionText}>{searchedCityWeatherDetail.current && searchedCityWeatherDetail.current.condition && searchedCityWeatherDetail.current.condition.text}</Text>
+                        {/* <Image 
                 source={require(storedCityIcon)}
                 /> */}
-                </View>
-                <View style={HomeScreenStyles.altLatView}>
-                    <Text style={HomeScreenStyles.altitudeText}>Latitude: {cityWeatherDetail.location && cityWeatherDetail.location.lat}</Text>
-                    <Text style={HomeScreenStyles.latitudeText}>Longitude: {cityWeatherDetail.location && cityWeatherDetail.location.lon}</Text>
+                    </View>
+                    <View style={HomeScreenStyles.altLatView}>
+                        <Text style={HomeScreenStyles.altitudeText}>Latitude: {searchedCityWeatherDetail.location && searchedCityWeatherDetail.location.lat}</Text>
+                        <Text style={HomeScreenStyles.latitudeText}>Longitude: {searchedCityWeatherDetail.location && searchedCityWeatherDetail.location.lon}</Text>
 
-                </View>
-            </View>
-
-            <View style={HomeScreenStyles.weatherDetailTodayScheduleView}>
-                <View style={HomeScreenStyles.weatherDetailView}>
-                    <Text style={HomeScreenStyles.weatherDetailText}>Cloudy condition from 1AM-9PM, with showers expected at 9AM</Text>
+                    </View>
                 </View>
 
-                <View style={HomeScreenStyles.todayScheduleView}>
-                    <TodayWeatherForcast />
+                <View style={HomeScreenStyles.weatherDetailTodayScheduleView}>
+                    <View style={HomeScreenStyles.weatherDetailView}>
+                        <Text style={HomeScreenStyles.weatherDetailText}>Cloudy condition from 1AM-9PM, with showers expected at 9AM</Text>
+                    </View>
+
+                    <View style={HomeScreenStyles.todayScheduleView}>
+                        <TodayWeatherForcast />
+
+                    </View>
+
+                </View>
+                <View style={HomeScreenStyles.tenDaysScheduleTitleView}>
+                    <View style={HomeScreenStyles.tenDaysTitleTextView}>
+                        <Text style={HomeScreenStyles.tenDaysTitleText}>10-Days FORECAST</Text>
+                    </View>
+
+                    <TenDaysWeatherForecast />
 
                 </View>
 
-            </View>
-            <View style={HomeScreenStyles.tenDaysScheduleTitleView}>
-                <View style={HomeScreenStyles.tenDaysTitleTextView}>
-                    <Text style={HomeScreenStyles.tenDaysTitleText}>10-Days FORECAST</Text>
+                <View style={HomeScreenStyles.weatherDetailCardView}>
+                    <WeatherDetailCard
+                    // cityWeatherDetail={cityWeatherDetail}
+                    />
                 </View>
-
-                <TenDaysWeatherForecast />
-
-            </View>
-
-            <View style={HomeScreenStyles.weatherDetailCardView}>
-                <WeatherDetailCard
-                // cityWeatherDetail={cityWeatherDetail}
-                />
-            </View>
+            </LinearGradient>
 
         </ScrollView>
     )
