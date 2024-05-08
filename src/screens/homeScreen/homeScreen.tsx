@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useRoute } from '@react-navigation/native';
 import { View, Text, ScrollView, Image } from 'react-native';
 
 import { SkyCastColors } from '../../components/skyCastColors/skyCastColors';
@@ -11,17 +12,18 @@ import TodayWeatherForcast from '../../components/reuseableComponents/todayWeath
 import TenDaysWeatherForecast from '../../components/reuseableComponents/tenDaysWeatherForecast/tenDaysWeatherForecast';
 import WeatherDetailCard from '../../components/reuseableComponents/weatherDetailCard/weatherDetailCard';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+//import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { myWeatherAPI } from '../../components/utilities/weatherAPI/weatherAPI';
 
-import StartUpLottie from '../../components/lottie/startUpLottie';
-
-import { AuthContext } from '../../components/utilities/useContext/useContext';
+//import { AuthContext } from '../../components/utilities/useContext/useContext';
 
 const HomeScreen = () => {
 
-    const authCtx = useContext(AuthContext);
+    const route = useRoute();
+    const { city } = route.params;
+
+    //const authCtx = useContext(AuthContext);
 
     const [searchedCityWeatherDetail, setSearchedCityWeatherDetail] = useState({
         location: "",
@@ -29,25 +31,21 @@ const HomeScreen = () => {
         condition: ""
 
     });
-    const [searchedCity, setSearchedCity] = useState('');
-    const [storedCityIcon, setStoredCityIcon] = useState('');
+    // const [searchedCity, setSearchedCity] = useState('');
+    // const [storedCityIcon, setStoredCityIcon] = useState('');
 
     useEffect(() => {
+       
         const weatherDetail = async () => {
-            const searchCity = await AsyncStorage.getItem('searchedCity');
-            setSearchedCity(searchCity as string);
-            console.log("Searched City " + searchCity);
+           // const searchCity = await AsyncStorage.getItem('searchedCity');
 
+            // const cityName = authCtx.cityName;
+           // setSearchedCity(cityName);
 
-
-            //const storedUserId = authCtx.cityName();
-
-
-            
-            fetch(`http://api.weatherapi.com/v1/current.json?key=${myWeatherAPI}&q=${searchCity}`)
+            fetch(`http://api.weatherapi.com/v1/current.json?key=${myWeatherAPI}&q=${city}`)
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log("Searched City Details: " + JSON.stringify(data));
+                    //console.log("Searched City Details: " + JSON.stringify(data));
                     setSearchedCityWeatherDetail(data);
                 })
                 .then((error) => {
@@ -55,7 +53,7 @@ const HomeScreen = () => {
                 })
         }
         weatherDetail();
-    }, [searchedCity])
+    }, [city])
 
     return (
         <ScrollView style={HomeScreenStyles.container}>

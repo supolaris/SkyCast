@@ -1,21 +1,22 @@
-import { createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext, useState } from "react";
 
 export const AuthContext = createContext({  
     cityName: '',
+    storeCityName: (city:string) => {}
 })
 
-function AuthContextProvider({children}: {children: any}) {
+function AuthContextProvider({children}: {children: ReactNode}) {
 
-    const [cityName, setCityName] = useState();
+    const [cityNameState, setCityNameState] = useState<string>();
 
-    function storeCityName(city: any){
-        setCityName(city)
-
-        return cityName;
+    function storeCityName(city: string){
+        setCityNameState(city)
+    
     }
 
     const value = {
-        cityName: storeCityName
+        cityName: cityNameState,
+        storeCityName: storeCityName
     }
 
 
