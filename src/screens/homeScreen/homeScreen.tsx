@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useRoute } from '@react-navigation/native';
-import { View, Text, ScrollView, Image } from 'react-native';
+import { View, Text, ScrollView, Image, FlatList } from 'react-native';
 
 import { SkyCastColors } from '../../components/skyCastColors/skyCastColors';
 
@@ -21,7 +21,8 @@ import { myWeatherAPI } from '../../components/utilities/weatherAPI/weatherAPI';
 const HomeScreen = () => {
 
     const route = useRoute();
-    const { city } = route.params;
+    //const [searchedCityname, setSearchedCityName] = useState('Islamabad');
+    const  city  = route.params?.city ? route.params.city :"Islamabad";
 
     //const authCtx = useContext(AuthContext);
 
@@ -102,6 +103,15 @@ const HomeScreen = () => {
                     // cityWeatherDetail={cityWeatherDetail}
                     />
                 </View>
+
+
+                {/* <View style={HomeScreenStyles.flatListView}>
+                    <FlatList 
+                    data={}
+                    renderItem={}
+
+                    />
+                </View> */}
             </LinearGradient>
 
         </ScrollView>

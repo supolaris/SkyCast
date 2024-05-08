@@ -37,17 +37,14 @@ const WeatherDetailCard = () => {
                             size={25}
                         />
                     </View>
+
                     <View>
                         <Text style={WeatherDetailCardSyles.titleText}>{item.title}</Text>
-
                     </View>
-
-
                 </View>
 
                 <View style={WeatherDetailCardSyles.valueView}>
                     <Text style={WeatherDetailCardSyles.valueText}>{item.value}</Text>
-
                 </View>
 
                 <View style={WeatherDetailCardSyles.descriptionView}>

@@ -86,13 +86,16 @@ const SearchScreen = () => {
     const handleCitySelection = async (city: any) => {
        // await AsyncStorage.setItem('searchedCity', city.name);
 
+      // const cityData = city;
+      // console.log("City Data"  + JSON.stringify(citiesData));
+
         const cityyy = city.name;
         //const authCity = authCtx.storeCityName(cityyy);
 
        // console.log("Auth Context City Name: " + authCity);
         //console.log("City name" + city.name);
-        setSelectedCity(city);
-        setInputText(city.name);
+        //setSelectedCity(city);
+        //setInputText(city.name);
         setSuggestions([]);
         setInputText('');
         navigation.navigate('HomeScreen', { city: cityyy });
