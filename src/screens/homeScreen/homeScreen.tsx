@@ -12,41 +12,28 @@ import TodayWeatherForcast from '../../components/reuseableComponents/todayWeath
 import TenDaysWeatherForecast from '../../components/reuseableComponents/tenDaysWeatherForecast/tenDaysWeatherForecast';
 import WeatherDetailCard from '../../components/reuseableComponents/weatherDetailCard/weatherDetailCard';
 
-//import AsyncStorage from '@react-native-async-storage/async-storage';
+import SunIcon from 'react-native-vector-icons/Feather';
 
 import { myWeatherAPI } from '../../components/utilities/weatherAPI/weatherAPI';
 
-//import { AuthContext } from '../../components/utilities/useContext/useContext';
 
 const HomeScreen = () => {
 
     const route = useRoute();
-    //const [searchedCityname, setSearchedCityName] = useState('Islamabad');
-    const  city  = route.params?.city ? route.params.city :"Islamabad";
-
-    //const authCtx = useContext(AuthContext);
-
+    const city = route.params?.city ? route.params.city : "Islamabad";
     const [searchedCityWeatherDetail, setSearchedCityWeatherDetail] = useState({
         location: "",
         current: "",
         condition: ""
 
     });
-    // const [searchedCity, setSearchedCity] = useState('');
-    // const [storedCityIcon, setStoredCityIcon] = useState('');
 
     useEffect(() => {
-       
+
         const weatherDetail = async () => {
-           // const searchCity = await AsyncStorage.getItem('searchedCity');
-
-            // const cityName = authCtx.cityName;
-           // setSearchedCity(cityName);
-
             fetch(`http://api.weatherapi.com/v1/current.json?key=${myWeatherAPI}&q=${city}`)
                 .then((response) => response.json())
                 .then((data) => {
-                    //console.log("Searched City Details: " + JSON.stringify(data));
                     setSearchedCityWeatherDetail(data);
                 })
                 .then((error) => {
@@ -95,25 +82,30 @@ const HomeScreen = () => {
                     </View>
 
                     <TenDaysWeatherForecast />
-
                 </View>
 
-                <View style={HomeScreenStyles.weatherDetailCardView}>
-                    <WeatherDetailCard
-                    // cityWeatherDetail={cityWeatherDetail}
-                    />
+                <View style={[HomeScreenStyles.weatherDetailCardView, {marginHorizontal: 10}]}>
+                    <View style={HomeScreenStyles.titleView}>
+                        <View style={HomeScreenStyles.iconView}>
+                            <SunIcon
+                                name='sun'
+                                color={SkyCastColors.white}
+                                size={25}
+                            />
+                        </View>
+                        <View>
+                            <Text style={HomeScreenStyles.titleText}>Humidity</Text>
+                        </View>
+                    </View>
+                    <View style={HomeScreenStyles.valueView}>
+                        <Text style={HomeScreenStyles.valueText}>{searchedCityWeatherDetail.current && searchedCityWeatherDetail.current.humidity}%</Text>
+                    </View>
+                    <View style={HomeScreenStyles.descriptionView}>
+                        <Text style={HomeScreenStyles.descriptionText}>{searchedCityWeatherDetail.location && searchedCityWeatherDetail.location.name}</Text>
+                    </View>
                 </View>
 
-
-                {/* <View style={HomeScreenStyles.flatListView}>
-                    <FlatList 
-                    data={}
-                    renderItem={}
-
-                    />
-                </View> */}
             </LinearGradient>
-
         </ScrollView>
     )
 }
